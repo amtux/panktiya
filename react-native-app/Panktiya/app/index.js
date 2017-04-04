@@ -5,6 +5,7 @@ import {
   View
 } from 'react-native';
 
+import { Intro } from './layouts/intro';
 import { Dashboard } from './layouts/dashboard';
 
 
@@ -13,8 +14,20 @@ import { Dashboard } from './layouts/dashboard';
 export class Index extends Component {
     render(){
        return(
+            <Intro onOpenNotification={this.onOpenNotification} />
+       );
+       return(
             <Dashboard />
        );
+    }
+
+    onOpenNotification(){
+        PankityaDBManager.getPankti((pankti) => {
+            this.setState({ 
+                loading: false,
+                pankti
+            });
+        });
     }
 }
 

@@ -18,14 +18,7 @@ export class Dashboard extends Component {
             loading: true,
             pankti: null
         };
-        PankityaNotificationsManager.init((function(notification) {
-            PankityaDBManager.getPankti((pankti) => {
-                this.setState({ 
-                    loading: false,
-                    pankti
-                });
-            });
-        }).bind(this));
+        
     }
     render() {
         if(this.state.loading){
