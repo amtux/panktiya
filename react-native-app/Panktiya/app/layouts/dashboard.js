@@ -15,7 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import PankityaDBManager from '../helpers/PankityaDBManager';
 import PankityaNotificationsManager from '../helpers/PankityaNotificationsManager';
 
-import { Button } from 'native-base';
+import { Content, Button } from 'native-base';
 
 export class Dashboard extends Component {
     constructor(props){
@@ -39,12 +39,14 @@ export class Dashboard extends Component {
         }
         return (
             <View style={styles.container}>
-            {this.renderSlider()}
-            <View ref="pankti" style={{backgroundColor: '#F8F8F8', paddingBottom: 15}}>
-                {this.state.pankti.verses.map(this.renderVerse.bind(this))}
-                {this.renderWriter(this.state.pankti.writer)}
-            </View>
-            <Button onPress={this.onPressSave.bind(this)}><Text>Save</Text></Button>
+                <Content contentContainerStyle={styles.content}>
+                    {this.renderSlider()}
+                    <View ref="pankti" style={{backgroundColor: '#F8F8F8', paddingBottom: 15}}>
+                        {this.state.pankti.verses.map(this.renderVerse.bind(this))}
+                        {this.renderWriter(this.state.pankti.writer)}
+                    </View>
+                    {this.renderShareButtons()}
+                </Content>
             </View>
         );
     }
@@ -74,6 +76,19 @@ export class Dashboard extends Component {
             </View>
         );
     }
+    renderShareButtons(){
+        return(
+            <View style={styles.shareButtonsContainer}>
+                <Text style={{marginBottom: 10, color: "#757474"}}>Spread Gurmat</Text>
+                <View style={{flexDirection: 'row'}}>
+                    <Icon name='instagram' size={30} color="gray" style={styles.button}/>
+                    <Icon name='facebook' size={25} color="gray" style={[styles.button, {top: 3}]}/>
+                    <Icon name='twitter' size={30} color="gray" style={styles.button}/>
+                    <Icon name='whatsapp' size={30} color="gray" style={styles.button}/>
+                </View>
+            </View>
+        );
+    }
     renderVerse(verse, id){
         var gurmukhi = verse['gurmukhi'].replace('Â', '');
         return(
@@ -97,21 +112,16 @@ export class Dashboard extends Component {
             if(vishraam && vishraam.length > 0 && !green_vishraam){
                 i = vishraam.pop();
                 vishraamColor = '#e74c3c';
-                // alert(JSON.stringify(vishraam));
                 if(vishraam.length > 0){
                  newVishraam = vishraam;
                 }
             }
             else if(!vishraam && green_vishraam.length > 0 && green_vishraam){
-                // alert('green')
                 i = green_vishraam.pop();
                 vishraamColor = '#2ecc71';
                 if(green_vishraam.length > 0){
                     newGreenVishraam = green_vishraam;
                 }
-                // // return(
-                // //     <View><Text>{gurmukhi.substring(index, i-index)}</Text> {this.renderVishraamGurmukhi(gurmukhi.substring(i-index, gurmukhi.length), null, green_vishraam.length > 0 ? green_vishraam : null)}</View>
-                // // );
             }
             else if(vishraam.length > 0 && green_vishraam.length > 0){
                 // var i = null;
@@ -130,12 +140,6 @@ export class Dashboard extends Component {
                 if(green_vishraam.length > 0){
                     newGreenVishraam = green_vishraam;
                 }
-                // if(i){
-                //     // return(
-                //     //     <View><Text>{gurmukhi.substring(index, i-index)}</Text> {this.renderVishraamGurmukhi(gurmukhi.substring(i-index, gurmukhi.length), vishraam.length > 0 ? vishraam : null, green_vishraam.length > 0 ? green_vishraam : null)}</View>
-                //     // );
-                // }
-                // alert('both')
             }
 
             var part1 = gurmukhi.substring(index, i-index-1);
@@ -168,7 +172,7 @@ export class Dashboard extends Component {
         return(
             <View style={{flexDirection: 'row'}}>
                <View style={{flex: 1, justifyContent: 'flex-end', paddingLeft: 10}}>
-               {this.state.preScreenShot ? <Text style={{fontSize: 10, color: '#34495e'}}>Panktiya App</Text> : null}
+               {this.state.preScreenShot ? <Text style={{fontSize: 10, color: '#757474'}}>Panktiya App</Text> : null}
                </View>
                <View>
                <Text style={styles.writer}>— {writer}</Text>
@@ -200,8 +204,11 @@ export class Dashboard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 50,
-    // justifyContent: 'center',
+    backgroundColor: '#F8F8F8',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
     backgroundColor: '#F8F8F8',
   },
   verse:{
@@ -221,13 +228,24 @@ const styles = StyleSheet.create({
   },
   writer: {
     fontSize: 20,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     fontStyle: 'italic',
     textAlign: 'right',
     paddingTop: 10,
     paddingRight: 15,
     paddingLeft: 15,
   },
+  shareButtonsContainer: {
+      alignItems: 'center',
+      marginTop: 70,
+      marginBottom: -120
+  },
+  button:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginLeft: 10,
+      marginRight: 10,
+  }
 });
 
 
