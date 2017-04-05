@@ -29,7 +29,8 @@ export class Intro extends Component {
       <AppIntro ref={(appintro) => {this._appintro = appintro;}}
                 showSkipButton={false} 
                 showDoneButton={true}
-                lockedOn={[1, 2, 3]}>
+                onSlideChange={this.onSlideChange}
+                lockedOn={[1, 2]}>
         <View style={[styles.slide,{ backgroundColor: '#14C867' }]}>
           <View level={10}><Text style={[styles.fateh, styles.gurmukhi]}>vwihgurU jI kw Kwlsw</Text></View>
           <View level={15}><Text style={[styles.fateh, styles.gurmukhi]}>vwihgurU jI kI Piqh</Text></View>
@@ -41,38 +42,44 @@ export class Intro extends Component {
           <View level={-10}><Text style={styles.text}>Allow Push Notification</Text></View>
           <View level={5}><Text style={[styles.subtitle, { color: '#14C867', marginTop: 30, marginBottom: 15 }]}>So you can get notifications for new Panktiya (Quotes)</Text></View>
           <Image level={5} source={require('../images/pankti-notif-ios.png')} resizeMode={Image.resizeMode.contain} style={styles.iosPanktiNotif} />
-          <View level={1}><Button style={{marginTop: 30}} onPress={this.onPressOk.bind(this)}success><TextNB style={{fontSize: 20, color: '#fff'}}>OK</TextNB></Button></View>
+          <View level={1}><Button style={{marginTop: 30}} onPress={this.onPressOk.bind(this)}success><TextNB style={{fontSize: 20, color: '#fff'}}>Allow</TextNB></Button></View>
         </View>
-        <View style={[styles.slide,{ backgroundColor: '#14C867' }]}>
-          <View level={8}><Text style={styles.title}>One more thing...</Text></View>
-          <View level={0}><Text style={[styles.subtitle, {marginTop: 30}]}>How many Panktiya (Quotes) would you like receive everyday?</Text></View>
-          <View level={-10} style={{marginTop: 10, flexDirection: 'row'}}>
-            <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(1)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>1</TextNB></Button>
-            <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(2)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>2</TextNB></Button>
-            <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(3)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>3</TextNB></Button>
-            <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(4)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>4</TextNB></Button>
-            <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(5)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>5</TextNB></Button>
-          </View>
-          <View level={-10}><Text style={styles.text}>Page 3</Text></View>
-        </View>
-        <View style={[styles.slide, { backgroundColor: '#fff' }]}>
-          <View level={-10}><Text style={styles.text}>Try it out!</Text></View>
-          <View level={8}><Text style={[styles.subtitle, {color: '#14C867', marginTop: 30, marginBottom: 80}]}>Press the HOME button to receive a new pankti.</Text></View>
-          <Icon name='long-arrow-down' size={60} color="#01AB6C"/>
+        <View style={[styles.slide, { backgroundColor: '#14C867' }]}>
+          <View level={-10}><Text style={styles.title}>Try it out!</Text></View>
+          <View level={8}><Text style={[styles.subtitle, {marginTop: 30, marginBottom: 80}]}>Press the HOME button to receive a new pankti.</Text></View>
+          <Icon name='long-arrow-down' size={60} color="#fff"/>
         </View>
       </AppIntro>
     );
   }
   onPressOk(){
-    PankityaNotificationsManager.init((function(notification) {
-        this.props.onOpenNotification();
-    }).bind(this));
     this._appintro.goNext();
+  }
+  onSlideChange(index){
+    if(index == 2){
+       PankityaNotificationsManager.init((function(notification) {
+          this.props.onOpenNotification();
+       }).bind(this));
+    }
   }
   onPressNumber(number){
     this._appintro.goNext();
   }
 }
+
+
+/*<View style={[styles.slide,{ backgroundColor: '#14C867' }]}>
+  <View level={8}><Text style={styles.title}>One more thing...</Text></View>
+  <View level={0}><Text style={[styles.subtitle, {marginTop: 30}]}>How many Panktiya (Quotes) would you like receive everyday?</Text></View>
+  <View level={-10} style={{marginTop: 10, flexDirection: 'row'}}>
+    <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(1)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>1</TextNB></Button>
+    <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(2)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>2</TextNB></Button>
+    <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(3)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>3</TextNB></Button>
+    <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(4)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>4</TextNB></Button>
+    <Button style={{marginRight: 3}} onPress={() => {this.onPressNumber.bind(this)(5)}} success><TextNB style={{fontSize: 20, color: '#fff'}}>5</TextNB></Button>
+  </View>
+  <View level={-10}><Text style={styles.text}>Page 3</Text></View>
+</View>*/
 
 const styles = StyleSheet.create({
   slide: {
