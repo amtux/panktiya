@@ -4,7 +4,8 @@ import {
   Text,
   View,
   AsyncStorage,
-  TouchableOpacity
+  TouchableOpacity,
+  CameraRoll
 } from 'react-native';
 
 import Slider from 'react-native-slider';
@@ -213,7 +214,12 @@ export class Dashboard extends Component {
     onPressSocialButton(platform){
         if(platform == 'instagram'){
             this.takeScreenShot((uri) => {
-                RNInstagramShare.share(uri, null);
+                var promise = CameraRoll.saveToCameraRoll(uri);
+                promise.then(function(result) {
+                    RNInstagramShare.share(result, '');
+                }).catch(function(error) {
+                    console.log('save failed ' + error);
+                });
             });
         }
     }
