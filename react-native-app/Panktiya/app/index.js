@@ -46,6 +46,8 @@ export class Index extends Component {
             }
         } catch (error) {
         }
+
+        this.onOpenNotification();
     }
     componentWillUnmount() {
         AppState.removeEventListener('change', this._handleAppStateChange.bind(this));

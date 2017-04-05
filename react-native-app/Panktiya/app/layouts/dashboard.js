@@ -8,8 +8,14 @@ import {
 
 import Slider from 'react-native-slider';
 
+import { takeSnapshot, dirs } from "react-native-view-shot";
+const { CacheDir } = dirs;
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import PankityaDBManager from '../helpers/PankityaDBManager';
 import PankityaNotificationsManager from '../helpers/PankityaNotificationsManager';
+
+import { Button } from 'native-base';
 
 export class Dashboard extends Component {
     constructor(props){
@@ -34,12 +40,16 @@ export class Dashboard extends Component {
         return (
             <View style={styles.container}>
             {this.renderSlider()}
-            {this.state.pankti.verses.map(this.renderVerse.bind(this))}
-            {this.renderWriter(this.state.pankti.writer)}
+            <View ref="pankti" style={{backgroundColor: '#F8F8F8', paddingBottom: 15}}>
+                {this.state.pankti.verses.map(this.renderVerse.bind(this))}
+                {this.renderWriter(this.state.pankti.writer)}
+            </View>
+            <Button onPress={this.onPressSave.bind(this)}><Text>Save</Text></Button>
             </View>
         );
     }
     renderSlider(){
+        return(null);
         return(
             <View style={{marginBottom: 60, padding: 15,}}>
                 <Slider value={this.state.numberOfNotifcations}
@@ -68,21 +78,122 @@ export class Dashboard extends Component {
         var gurmukhi = verse['gurmukhi'].replace('Â', '');
         return(
             <View key={id} style={[styles.verse, {borderBottomWidth: id == this.state.pankti.verses.length-1 ? 0 : 1}]}>
-                <Text style={styles.gurmukhi}>
+                {this.renderVishraamGurmukhi(gurmukhi, verse['vishraam'] ? verse['vishraam'].split(',') : null, verse['green_vishraam'] ? verse['green_vishraam'].split(',') : null)}
+                {/*<Text style={styles.gurmukhi}>
                     {gurmukhi}
-                </Text>
+                </Text>*/}
                 <Text style={styles.english_ssk}>
                     {verse['english_ssk']}
                 </Text>
             </View>
         );
     }
+    renderVishraamGurmukhi(gurmukhi, vishraam, green_vishraam, index = 0){
+        if(vishraam || green_vishraam){
+            var newVishraam = null;
+            var newGreenVishraam = null;
+            var vishraamColor = null;
+            var i = null;
+            if(vishraam && vishraam.length > 0 && !green_vishraam){
+                i = vishraam.pop();
+                vishraamColor = '#e74c3c';
+                // alert(JSON.stringify(vishraam));
+                if(vishraam.length > 0){
+                 newVishraam = vishraam;
+                }
+            }
+            else if(!vishraam && green_vishraam.length > 0 && green_vishraam){
+                // alert('green')
+                i = green_vishraam.pop();
+                vishraamColor = '#2ecc71';
+                if(green_vishraam.length > 0){
+                    newGreenVishraam = green_vishraam;
+                }
+                // // return(
+                // //     <View><Text>{gurmukhi.substring(index, i-index)}</Text> {this.renderVishraamGurmukhi(gurmukhi.substring(i-index, gurmukhi.length), null, green_vishraam.length > 0 ? green_vishraam : null)}</View>
+                // // );
+            }
+            else if(vishraam.length > 0 && green_vishraam.length > 0){
+                // var i = null;
+                if(vishraam[0] < green_vishraam[0]){
+                    i = vishraam.pop();
+                    vishraamColor = '#e74c3c';
+                }
+                else{
+                    i = green_vishraam.pop();
+                    vishraamColor = '#2ecc71';
+                }
+
+                if(vishraam.length > 0){
+                    newVishraam = vishraam;
+                }
+                if(green_vishraam.length > 0){
+                    newGreenVishraam = green_vishraam;
+                }
+                // if(i){
+                //     // return(
+                //     //     <View><Text>{gurmukhi.substring(index, i-index)}</Text> {this.renderVishraamGurmukhi(gurmukhi.substring(i-index, gurmukhi.length), vishraam.length > 0 ? vishraam : null, green_vishraam.length > 0 ? green_vishraam : null)}</View>
+                //     // );
+                // }
+                // alert('both')
+            }
+
+            var part1 = gurmukhi.substring(index, i-index-1);
+            var part1LastIndexOfSpace = part1.lastIndexOf(' ');
+            if(part1LastIndexOfSpace != -1){
+                if((i - part1LastIndexOfSpace) != 1){
+                    i = part1LastIndexOfSpace+1;
+                    part1 = gurmukhi.substring(index, i-index-1);
+                }
+            }
+            var vishraamNextSpaceIndex = (gurmukhi.substring(i-index, gurmukhi.length)).indexOf(' ');
+            var vishraamWordEndIndex =  vishraamNextSpaceIndex != -1 ? part1.length+vishraamNextSpaceIndex+1 : gurmukhi.length;
+            var part2 = gurmukhi.substring(i-index-1,  vishraamWordEndIndex);
+            return(
+                <Text style={styles.gurmukhi}>
+                    {part1}
+                    <Text style={[styles.gurmukhi, {color: vishraamColor}]}>
+                        {part2}
+                    </Text> 
+                    {this.renderVishraamGurmukhi(gurmukhi.substring(vishraamWordEndIndex, gurmukhi.length), newVishraam, newGreenVishraam)}
+                </Text>
+            );
+        }
+        return(
+            <Text style={styles.gurmukhi}>{gurmukhi}</Text>
+        );
+        
+    }
     renderWriter(writer){
         return(
-            <View>
+            <View style={{flexDirection: 'row'}}>
+               <View style={{flex: 1, justifyContent: 'flex-end', paddingLeft: 10}}>
+               {this.state.preScreenShot ? <Text style={{fontSize: 10, color: '#34495e'}}>Panktiya App</Text> : null}
+               </View>
+               <View>
                <Text style={styles.writer}>— {writer}</Text>
+               </View>
             </View>
         );
+    }
+    onPressSave(){
+        this.setState({
+            preScreenShot: true
+        }, ()=>{
+            setTimeout(()=>{
+            takeSnapshot(this.refs['pankti'], { path: CacheDir+"/pankti_ss.png" })
+            .then(
+            uri => {
+                this.setState({
+                    preScreenShot: false
+                });
+                console.log("Image saved to", uri);
+            },
+            error => console.error("Oops, snapshot failed", error)
+            );
+            }, 200);
+        });
+        
     }
 }
 
@@ -91,7 +202,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     // justifyContent: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F8F8F8',
   },
   verse:{
     borderBottomWidth: 1,
