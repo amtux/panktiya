@@ -216,7 +216,7 @@ export class Dashboard extends Component {
             this.takeScreenShot((uri) => {
                 var promise = CameraRoll.saveToCameraRoll(uri);
                 promise.then(function(result) {
-                    RNInstagramShare.share(result, '');
+                    RNInstagramShare.share(result);
                 }).catch(function(error) {
                     console.log('save failed ' + error);
                 });

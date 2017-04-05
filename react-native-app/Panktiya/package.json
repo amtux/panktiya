@@ -11,7 +11,7 @@
     "react": "15.4.2",
     "react-native": "0.42.3",
     "react-native-app-intro": "git://github.com/iSimar/react-native-app-intro.git#master",
-    "react-native-instagram-share": "0.0.8",
+    "react-native-instagram-share": "git://github.com/eujern/react-native-instagram-share.git#master",
     "react-native-push-notification": "git://github.com/eujern/react-native-push-notification.git#master",
     "react-native-slider": "^0.9.1",
     "react-native-sqlite-storage": "^3.2.2",
