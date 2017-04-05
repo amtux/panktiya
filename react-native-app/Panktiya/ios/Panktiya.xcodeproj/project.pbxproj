@@ -45,6 +45,7 @@
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* PanktiyaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PanktiyaTests.m */; };
+		320F3BB41E95986C00EA76F9 /* libRNInstagramShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F3BB01E95985D00EA76F9 /* libRNInstagramShare.a */; };
 		324D10B61E91865800DCE154 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 324D10B51E91865800DCE154 /* www */; };
 		324D10E21E91A10D00DCE154 /* GURAKH_H.otf in Resources */ = {isa = PBXBuildFile; fileRef = 324D10E11E91A10D00DCE154 /* GURAKH_H.otf */; };
 		324D11451E929C5E00DCE154 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 324D11321E929C3E00DCE154 /* libRCTPushNotification.a */; };
@@ -173,6 +174,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNViewShot;
+		};
+		320F3BAF1E95985D00EA76F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 320F3B901E95985C00EA76F9 /* RNInstagramShare.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C2928CBF1BF0FBA100626B74;
+			remoteInfo = RNInstagramShare;
 		};
 		324D10AF1E91858D00DCE154 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -343,6 +351,7 @@
 		2D02E47B1E0B4A5D006451C7 /* Panktiya-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Panktiya-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Panktiya-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Panktiya-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1295C268094C2FA7EBE9D8 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		320F3B901E95985C00EA76F9 /* RNInstagramShare.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNInstagramShare.xcodeproj; path = "../node_modules/react-native-instagram-share/RNInstagramShare.xcodeproj"; sourceTree = "<group>"; };
 		324D10B51E91865800DCE154 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../www; sourceTree = "<group>"; };
 		324D10E11E91A10D00DCE154 /* GURAKH_H.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GURAKH_H.otf; path = fonts/GURAKH_H.otf; sourceTree = "<group>"; };
 		324D11221E929C3E00DCE154 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
@@ -410,6 +419,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320F3BB41E95986C00EA76F9 /* libRNInstagramShare.a in Frameworks */,
 				324D11451E929C5E00DCE154 /* libRCTPushNotification.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -577,6 +587,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		320F3B911E95985C00EA76F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				320F3BB01E95985D00EA76F9 /* libRNInstagramShare.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		324D10931E91858C00DCE154 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +641,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				320F3B901E95985C00EA76F9 /* RNInstagramShare.xcodeproj */,
 				324D11221E929C3E00DCE154 /* RCTPushNotification.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -892,6 +911,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 320F3B911E95985C00EA76F9 /* Products */;
+					ProjectRef = 320F3B901E95985C00EA76F9 /* RNInstagramShare.xcodeproj */;
+				},
+				{
 					ProductGroup = 320F3B5B1E94746000EA76F9 /* Products */;
 					ProjectRef = 8D84550A6861452CA78C9532 /* RNVectorIcons.xcodeproj */;
 				},
@@ -983,6 +1006,13 @@
 			fileType = archive.ar;
 			path = libRNViewShot.a;
 			remoteRef = 320F3B7E1E94746000EA76F9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		320F3BB01E95985D00EA76F9 /* libRNInstagramShare.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNInstagramShare.a;
+			remoteRef = 320F3BAF1E95985D00EA76F9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		324D10B01E91858D00DCE154 /* libSQLite.a */ = {

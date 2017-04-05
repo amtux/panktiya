@@ -18,6 +18,8 @@ import PankityaNotificationsManager from '../helpers/PankityaNotificationsManage
 
 import { Content, Button } from 'native-base';
 
+import RNInstagramShare from 'react-native-instagram-share';
+
 export class Dashboard extends Component {
     constructor(props){
         super(props);
@@ -189,7 +191,7 @@ export class Dashboard extends Component {
             </View>
         );
     }
-    onPressSave(){
+    takeScreenShot(cb){
         this.setState({
             preScreenShot: true
         }, ()=>{
@@ -200,7 +202,7 @@ export class Dashboard extends Component {
                 this.setState({
                     preScreenShot: false
                 });
-                console.log("Image saved to", uri);
+                cb(uri);
             },
             error => console.error("Oops, snapshot failed", error)
             );
@@ -210,7 +212,9 @@ export class Dashboard extends Component {
     }
     onPressSocialButton(platform){
         if(platform == 'instagram'){
-            
+            this.takeScreenShot((uri) => {
+                RNInstagramShare.share(uri, null);
+            });
         }
     }
 }
