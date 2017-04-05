@@ -29,7 +29,7 @@ export class Intro extends Component {
       <AppIntro ref={(appintro) => {this._appintro = appintro;}}
                 showSkipButton={false} 
                 showDoneButton={true}
-                onSlideChange={this.onSlideChange}
+                onSlideChange={this.onSlideChange.bind(this)}
                 lockedOn={[1, 2]}>
         <View style={[styles.slide,{ backgroundColor: '#14C867' }]}>
           <View level={10}><Text style={[styles.fateh, styles.gurmukhi]}>vwihgurU jI kw Kwlsw</Text></View>
@@ -60,6 +60,10 @@ export class Intro extends Component {
        PankityaNotificationsManager.init((function(notification) {
           this.props.onOpenNotification();
        }).bind(this));
+       this.props.onLastSlide();
+    }
+    else{
+      this.props.onNotLastSlide();
     }
   }
   onPressNumber(number){

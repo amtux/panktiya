@@ -15,13 +15,15 @@ export class Dashboard extends Component {
         super(props);
         this.state = {
             numberOfNotifcations: 0,
-            loading: true,
             pankti: null
         };
         
     }
+    setPankti(pankti){
+        this.setState({ pankti });
+    }
     render() {
-        if(this.state.loading){
+        if(!this.state.pankti){
             return(
                 <View style={styles.container}>
                 {this.renderSlider()}

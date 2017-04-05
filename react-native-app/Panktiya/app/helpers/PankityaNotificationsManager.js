@@ -18,6 +18,15 @@ class PankityaNotificationsManager {
         });
     }
 
+    setInitialNotif(){
+        var notifcation_date  = new Date();
+        PushNotification.localNotificationSchedule({
+            message: "🙏 New pankti from Guru Granth Sahib Ji",
+            date: notifcation_date,
+            number: '0'
+        });
+    }
+
     setNumberOfNotifications(count){
 
         PushNotification.cancelAllLocalNotifications();
