@@ -21,18 +21,29 @@ export class Index extends Component {
         this.state = {
             loading: true,
             completedTutorial: false,
-            currentAppState: null
+            currentAppState: null,
+            notificationsCount: null
         };
     }
     async componentDidMount() {
-        // AsyncStorage.setItem('@AppStore:completedTutorial', 'null');
+        // AsyncStorage.setItem('@AppStore', 'null');
         AppState.addEventListener('change', this._handleAppStateChange.bind(this));
         try {
-            const value = await AsyncStorage.getItem('@AppStore:completedTutorial');
-            this.setState({
-                loading: false,
-                completedTutorial: value == '1'
-            });
+            const value = await AsyncStorage.getItem('@AppStore');
+
+            if(value != null && value != 'null'){
+                var AppStore = JSON.parse(value);
+                this.setState({
+                    loading: false,
+                    completedTutorial: AppStore.completedTutorial,
+                    notificationsCount: parseInt(AppStore.notificationsCount)
+                });
+            }
+            else{
+                this.setState({
+                    loading: false
+                });
+            }
         } catch (error) {
         }
     }
@@ -42,9 +53,14 @@ export class Index extends Component {
     _handleAppStateChange(currentAppState) {
       if(currentAppState == 'background' && lastSlide && !this.state.completedTutorial){
         PankityaNotificationsManager.setInitialNotif();
-        AsyncStorage.setItem('@AppStore:completedTutorial', '1');
+        var AppStore = {
+            "completedTutorial" : true,
+            "notificationsCount": 5
+        };
+        AsyncStorage.setItem('@AppStore', JSON.stringify(AppStore));
         this.setState({
-            completedTutorial: true
+            completedTutorial: true,
+            notificationsCount: 5
         });
       }
     }
@@ -60,7 +76,8 @@ export class Index extends Component {
         );
        }
         return(
-            <Dashboard ref={(dashboard) => {this._dashboard = dashboard;}} />
+            <Dashboard ref={(dashboard) => {this._dashboard = dashboard;}}
+                       count={this.state.notificationsCount} />
         );
        
     }

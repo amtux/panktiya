@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  AsyncStorage
 } from 'react-native';
 
 import Slider from 'react-native-slider';
@@ -14,7 +15,7 @@ export class Dashboard extends Component {
     constructor(props){
         super(props);
         this.state = {
-            numberOfNotifcations: 0,
+            numberOfNotifcations: this.props.count,
             pankti: null
         };
         
@@ -51,6 +52,11 @@ export class Dashboard extends Component {
                         onValueChange={(value) => {
                             this.setState({numberOfNotifcations: value});
                             PankityaNotificationsManager.setNumberOfNotifications(value);
+                            var AppStore = {
+                                "completedTutorial" : true,
+                                "notificationsCount": value
+                            };
+                            AsyncStorage.setItem('@AppStore', JSON.stringify(AppStore));
                         }} />
                 <Text>
                     You will receive {this.state.numberOfNotifcations == 1 ? this.state.numberOfNotifcations +' pankti' : this.state.numberOfNotifcations +' panktiya'} daily{this.state.numberOfNotifcations > 1 ? ' every '+(4-(this.state.numberOfNotifcations-4))+' hrs between 8 am and 8 pm.' : (this.state.numberOfNotifcations == 1 ? ' at 8 am.': '.')}
