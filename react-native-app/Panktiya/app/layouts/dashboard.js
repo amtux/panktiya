@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  AsyncStorage
+  AsyncStorage,
+  TouchableOpacity
 } from 'react-native';
 
 import Slider from 'react-native-slider';
@@ -81,10 +82,18 @@ export class Dashboard extends Component {
             <View style={styles.shareButtonsContainer}>
                 <Text style={{marginBottom: 10, color: "#757474"}}>Spread Gurmat</Text>
                 <View style={{flexDirection: 'row'}}>
-                    <Icon name='instagram' size={30} color="gray" style={styles.button}/>
-                    <Icon name='facebook' size={25} color="gray" style={[styles.button, {top: 3}]}/>
-                    <Icon name='twitter' size={30} color="gray" style={styles.button}/>
-                    <Icon name='whatsapp' size={30} color="gray" style={styles.button}/>
+                    <TouchableOpacity onPress={()=>{this.onPressSocialButton('instagram')}}>
+                        <Icon name='instagram' size={30} color="gray" style={styles.button}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.onPressSocialButton('facebook')}}>
+                        <Icon name='facebook' size={25} color="gray" style={[styles.button, {top: 3}]}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.onPressSocialButton('twitter')}}>
+                        <Icon name='twitter' size={30} color="gray" style={styles.button}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.onPressSocialButton('whatsapp')}}>
+                        <Icon name='whatsapp' size={30} color="gray" style={styles.button}/>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -198,6 +207,11 @@ export class Dashboard extends Component {
             }, 200);
         });
         
+    }
+    onPressSocialButton(platform){
+        if(platform == 'instagram'){
+            
+        }
     }
 }
 
