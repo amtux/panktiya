@@ -20,7 +20,8 @@ class PankityaNotificationsManager {
 
     setInitialNotif(){
         var notifcation_date  = new Date();
-        PushNotification.localNotificationSchedule({
+        notifcation_date.setSeconds(notifcation_date.getSeconds() + 1);
+        PushNotification.localNotification({
             message: "🙏 New pankti from Guru Granth Sahib Ji",
             date: notifcation_date,
             number: '0'
