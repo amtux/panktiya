@@ -49,7 +49,7 @@
 		324D10E21E91A10D00DCE154 /* GURAKH_H.otf in Resources */ = {isa = PBXBuildFile; fileRef = 324D10E11E91A10D00DCE154 /* GURAKH_H.otf */; };
 		324D11451E929C5E00DCE154 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 324D11321E929C3E00DCE154 /* libRCTPushNotification.a */; };
 		32563E231E95A58A00DF282B /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32563E221E95A57900DF282B /* libRCTCameraRoll.a */; };
-		32563E6B1E95BE2600DF282B /* libRNInstagramShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32563E671E95BE1300DF282B /* libRNInstagramShare.a */; };
+		32563E791E95C77800DF282B /* libRNInstagramShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32563E781E95C76E00DF282B /* libRNInstagramShare.a */; };
 		32F3D60CB38A4BE1B1CBE18A /* Microsoft Sans Serif.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2005A7B1CE649D29245C0C6 /* Microsoft Sans Serif.ttf */; };
 		3DBF8942BFB1422D96472A26 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F126D90B88AC43CFBE87DE71 /* Rubik-Bold.ttf */; };
 		437E16077EE84EDA99F5BEFE /* Skia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBB06636CADB457283C810F9 /* Skia.ttf */; };
@@ -204,9 +204,9 @@
 			remoteGlobalIDString = 58B5115D1A9E6B3D00147676;
 			remoteInfo = RCTCameraRoll;
 		};
-		32563E661E95BE1300DF282B /* PBXContainerItemProxy */ = {
+		32563E771E95C76E00DF282B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 32563E461E95BE1300DF282B /* RNInstagramShare.xcodeproj */;
+			containerPortal = 32563E731E95C76E00DF282B /* RNInstagramShare.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = C2928CBF1BF0FBA100626B74;
 			remoteInfo = RNInstagramShare;
@@ -363,7 +363,7 @@
 		324D10E11E91A10D00DCE154 /* GURAKH_H.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GURAKH_H.otf; path = fonts/GURAKH_H.otf; sourceTree = "<group>"; };
 		324D11221E929C3E00DCE154 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		32563E1D1E95A57900DF282B /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "/Users/simar/Projects/panktiya/react-native-app/Panktiya/node_modules/react-native/Libraries/NativeAnimation/../CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<absolute>"; };
-		32563E461E95BE1300DF282B /* RNInstagramShare.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNInstagramShare.xcodeproj; path = "../node_modules/react-native-instagram-share/ios/RNInstagramShare.xcodeproj"; sourceTree = "<group>"; };
+		32563E731E95C76E00DF282B /* RNInstagramShare.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNInstagramShare.xcodeproj; path = "../node_modules/react-native-instagram-share/RNInstagramShare.xcodeproj"; sourceTree = "<group>"; };
 		361AEFDC4F9F45E589DFF295 /* SanFranciscoBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SanFranciscoBold.ttf; path = "../node_modules/native-base/Fonts/SanFranciscoBold.ttf"; sourceTree = "<group>"; };
 		37563E51505F472CB6C39416 /* Georgia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Georgia.ttf; path = "../node_modules/native-base/Fonts/Georgia.ttf"; sourceTree = "<group>"; };
 		3BDE6F8AA67E4ADC8C10D99A /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-MediumItalic.ttf"; path = "../node_modules/native-base/Fonts/Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -428,7 +428,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32563E6B1E95BE2600DF282B /* libRNInstagramShare.a in Frameworks */,
+				32563E791E95C77800DF282B /* libRNInstagramShare.a in Frameworks */,
 				32563E231E95A58A00DF282B /* libRCTCameraRoll.a in Frameworks */,
 				324D11451E929C5E00DCE154 /* libRCTPushNotification.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -622,10 +622,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		32563E471E95BE1300DF282B /* Products */ = {
+		32563E741E95C76E00DF282B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32563E671E95BE1300DF282B /* libRNInstagramShare.a */,
+				32563E781E95C76E00DF282B /* libRNInstagramShare.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -659,7 +659,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				32563E461E95BE1300DF282B /* RNInstagramShare.xcodeproj */,
+				32563E731E95C76E00DF282B /* RNInstagramShare.xcodeproj */,
 				32563E1D1E95A57900DF282B /* RCTCameraRoll.xcodeproj */,
 				324D11221E929C3E00DCE154 /* RCTPushNotification.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -934,8 +934,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = 32563E471E95BE1300DF282B /* Products */;
-					ProjectRef = 32563E461E95BE1300DF282B /* RNInstagramShare.xcodeproj */;
+					ProductGroup = 32563E741E95C76E00DF282B /* Products */;
+					ProjectRef = 32563E731E95C76E00DF282B /* RNInstagramShare.xcodeproj */;
 				},
 				{
 					ProductGroup = 320F3B5B1E94746000EA76F9 /* Products */;
@@ -1059,11 +1059,11 @@
 			remoteRef = 32563E211E95A57900DF282B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		32563E671E95BE1300DF282B /* libRNInstagramShare.a */ = {
+		32563E781E95C76E00DF282B /* libRNInstagramShare.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNInstagramShare.a;
-			remoteRef = 32563E661E95BE1300DF282B /* PBXContainerItemProxy */;
+			remoteRef = 32563E771E95C76E00DF282B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
