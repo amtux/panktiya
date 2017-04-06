@@ -45,7 +45,8 @@ export class Dashboard extends Component {
             <View style={styles.container}>
                 <Content contentContainerStyle={styles.content}>
                     {this.renderSlider()}
-                    <View ref="pankti" style={{backgroundColor: '#F8F8F8', paddingBottom: 15}}>
+                    <View ref="pankti"
+                          style={{backgroundColor: '#F8F8F8', paddingBottom: 15, minHeight: 375, justifyContent: 'center'}}>
                         {this.state.pankti.verses.map(this.renderVerse.bind(this))}
                         {this.renderWriter(this.state.pankti.writer)}
                     </View>
@@ -197,7 +198,9 @@ export class Dashboard extends Component {
             preScreenShot: true
         }, ()=>{
             setTimeout(()=>{
-            takeSnapshot(this.refs['pankti'], { path: CacheDir+"/pankti_ss.png" })
+            takeSnapshot(this.refs['pankti'], { 
+                path: CacheDir+"/pankti_ss.png"
+            })
             .then(
             uri => {
                 this.setState({
@@ -261,7 +264,7 @@ const styles = StyleSheet.create({
   },
   shareButtonsContainer: {
       alignItems: 'center',
-      marginTop: 70,
+      marginTop: 40,
       marginBottom: -120
   },
   button:{
